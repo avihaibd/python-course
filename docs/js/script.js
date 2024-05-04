@@ -2,14 +2,22 @@
 document.querySelectorAll('.sidebar a').forEach(menuItem => {
   menuItem.addEventListener('click', (event) => {
     event.preventDefault(); // Prevent default anchor link behavior
-    const contentUrl = menuItem.getAttribute('href').replace('.md', '.html');
+    const contentUrl = menuItem.getAttribute('href').replace('.md', '.html'); // Replace .md with .html
 
     fetch(contentUrl)
       .then(response => response.text())
       .then(data => {
-        document.querySelector('.content').innerHTML = data;
-        document.querySelector('.content').setAttribute('dir', 'rtl'); // Set text direction to right-to-left
-        document.querySelector('.content').setAttribute('lang', 'he'); // Set language to Hebrew
+        const iframe = document.querySelector('.content iframe');
+        const iframeDocument = iframe.contentWindow.document; // Access the iframe document
+
+        // Set attributes of the HTML content inside the iframe
+        iframeDocument.documentElement.setAttribute('dir', 'rtl'); // Set text direction to right-to-left
+        iframeDocument.documentElement.setAttribute('lang', 'he'); // Set language to Hebrew
+
+        // Inject the fetched data into the iframe document
+        iframeDocument.open();
+        iframeDocument.write(data);
+        iframeDocument.close();
       })
       .catch(error => console.error(error));
   });
@@ -19,12 +27,20 @@ document.querySelectorAll('.sidebar a').forEach(menuItem => {
 $(document).ready(function() {
   $('.sidebar a').click(function(event) {
     event.preventDefault();
-    var contentUrl = $(this).attr('href').replace('.md', '.html');
+    var contentUrl = $(this).attr('href').replace('.md', '.html'); // Replace .md with .html
 
     $.get(contentUrl, function(data) {
-      $('.content').html(data);
-      $('.content').attr('dir', 'rtl'); // Set text direction to right-to-left
-      $('.content').attr('lang', 'he'); // Set language to Hebrew
+      const iframe = $('.content iframe')[0]; // Get the native iframe element
+      const iframeDocument = iframe.contentWindow.document; // Access the iframe document
+
+      // Set attributes of the HTML content inside the iframe
+      iframeDocument.documentElement.setAttribute('dir', 'rtl'); // Set text direction to right-to-left
+      iframeDocument.documentElement.setAttribute('lang', 'he'); // Set language to Hebrew
+
+      // Inject the fetched data into the iframe document
+      iframeDocument.open();
+      iframeDocument.write(data);
+      iframeDocument.close();
     });
   });
 });
