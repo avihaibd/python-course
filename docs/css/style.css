@@ -35,3 +35,7 @@ iframe {
   text-decoration: none;
   color: black;
 }
+
+.markdown-body {
+  direction: rtl; /* Set text direction to right-to-left */
+}
