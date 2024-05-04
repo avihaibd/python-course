@@ -2,7 +2,7 @@
 document.querySelectorAll('.sidebar a').forEach(menuItem => {
   menuItem.addEventListener('click', (event) => {
     event.preventDefault(); // Prevent default anchor link behavior
-    const contentUrl = menuItem.getAttribute('href').slice(1) + '.html'; // Extract markdown filename
+    const contentUrl = menuItem.getAttribute('href').replace('.md', '.html');
 
     fetch(contentUrl)
       .then(response => response.text())
@@ -19,7 +19,7 @@ document.querySelectorAll('.sidebar a').forEach(menuItem => {
 $(document).ready(function() {
   $('.sidebar a').click(function(event) {
     event.preventDefault();
-    var contentUrl = $(this).attr('href').slice(1) + '.html';
+    var contentUrl = $(this).attr('href').replace('.md', '.html');
 
     $.get(contentUrl, function(data) {
       $('.content').html(data);
