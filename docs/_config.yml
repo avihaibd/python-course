@@ -1,0 +1,4 @@
+languages: ["he"]
+defaultLang: he
+languageNames:
+  he: Hebrew
