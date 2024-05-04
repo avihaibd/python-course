@@ -8,6 +8,8 @@ document.querySelectorAll('.sidebar a').forEach(menuItem => {
       .then(response => response.text())
       .then(data => {
         document.querySelector('.content').innerHTML = data;
+        document.querySelector('.content').setAttribute('dir', 'rtl'); // Set text direction to right-to-left
+        document.querySelector('.content').setAttribute('lang', 'he'); // Set language to Hebrew
       })
       .catch(error => console.error(error));
   });
@@ -21,6 +23,8 @@ $(document).ready(function() {
 
     $.get(contentUrl, function(data) {
       $('.content').html(data);
+      $('.content').attr('dir', 'rtl'); // Set text direction to right-to-left
+      $('.content').attr('lang', 'he'); // Set language to Hebrew
     });
   });
 });
