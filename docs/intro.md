@@ -1,3 +1,12 @@
+---
+layout: null
+---
+
+<style>
+    body {
+        direction: rtl;
+    }
+</style>
 
 ## עולם הרובוטים של פיתון! 
 
