@@ -1,9 +1,4 @@
-<style>
-    body {
-        direction: rtl;
-    }
-</style>
-
+<style>body {direction: rtl;}</style>
 # פרמטרים
 
 # משתנים
